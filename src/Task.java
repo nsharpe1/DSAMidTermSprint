@@ -3,9 +3,6 @@ import java.util.Objects;
 public class Task {
     public String desc;
     public String comstatus;
-    public Node head;
-    public Node tail;
-    public int size;
 
     public Task() {
 
