@@ -1,73 +1,35 @@
+import java.util.Objects;
+
 public class User {
-    String arr[] = null;
-    public Node head;
-    public Node tail;
-    public int size;
+    private String name;
+    private TaskList taskList;
 
-
-    public User (int sizeOfArray) {
-        arr = new String[sizeOfArray];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = null;
-        }
+    public User (String name, TaskList taskList) {
+        this.name = name;
+        this.taskList = taskList;
     }
 
-    public void createUser (int location, String name) {
-        try {
-            if (arr[location] == null) {
-                arr[location] = name;
-                System.out.println("Successfully created user");
-            } else {
-                System.out.println("The location is already occupied");
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Invalid index top access array");
-        }
+    public String getName() {
+        return name;
     }
 
-    public Node createdLinkedList (String desc, String comstatus) {
-        Node node = new Node();
-        node.next = null;
-        node.value = desc;
-        node.value2 = comstatus;
-        head = node;
-        tail = node;
-        size = 1;
-        return head;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void addTaskInToDoList(String desc, String comstatus, int location) {
-        Node node = new Node();
-        node.value = desc;
-        node.value2 = comstatus;
-        if (head == null) {
-            createdLinkedList(desc, comstatus);
-            return;
-        } else if (location == 0) {
-            node.next = head;
-            head = node;
-        } else if (location >=  size) {
-            tail.next = node;
-            node.next = null;
-            tail = node;
-        } else {
-            Node tempNode = head;
-            int index = 0;
-            while (index < location - 1) {
-                tempNode = tempNode.next;
-                index++;
-            }
-            Node nextNode = node;
-            node.next = nextNode;
-        }
-        size++;
+    public TaskList getTaskList() {
+        return taskList;
     }
 
-    public void markTaskAsCompleted() {
-
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
     }
 
-    public void printAllTasks() {
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", taskList=" + taskList +
+                '}';
     }
 }

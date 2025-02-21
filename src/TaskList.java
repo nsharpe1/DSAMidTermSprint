@@ -1,25 +1,31 @@
+import java.util.Objects;
+
 public class TaskList {
     public Node head;
     public Node tail;
     public int size;
 
-    public Node createdLinkedList (String desc, String comstatus) {
+    public TaskList() {
+
+    }
+
+    public Node createdLinkedList (Task task) {
         Node node = new Node();
         node.next = null;
-        node.value = desc;
-        node.value2 = comstatus;
+        node.value = task.getDesc();
+        node.value2 = task.getComstatus();
         head = node;
         tail = node;
         size = 1;
         return head;
     }
 
-    public void addTaskInToDoList(String desc, String comstatus, int location) {
+    public void addTaskInToDoList(Task task, int location) {
         Node node = new Node();
-        node.value = desc;
-        node.value2 = comstatus;
+        node.value = task.getDesc();
+        node.value2 = task.getComstatus();
         if (head == null) {
-            createdLinkedList(desc, comstatus);
+            createdLinkedList(task);
             return;
         } else if (location == 0) {
             node.next = head;
@@ -41,11 +47,35 @@ public class TaskList {
         size++;
     }
 
-    public void markTaskAsCompleted() {
-
+    public void markTaskAsCompleted(Task task) {
+        Node tempNode = head;
+        boolean taskFound = false;
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(tempNode.value, task.getDesc())) {
+                if (Objects.equals(tempNode.value2, "completed")) {
+                    System.out.println("Task already marked as completed!");
+                    taskFound = true;
+                    break;
+                } else {
+                    task.markTaskAsCompleted();
+                    tempNode.value2 = "completed";
+                    taskFound = true;
+                    break;
+                }
+            }
+        tempNode = tempNode.next;
+        }
+        if (taskFound == false) {
+            System.out.println("Task not in task list!");
+        }
     }
 
     public void printAllTasks() {
-
+        Node tempNode = head;
+        System.out.println("To Do List");
+        for (int i = 0; i < size; i++) {
+            System.out.println("Description  = " + tempNode.value + " " + "Completion Status = " + tempNode.value2);
+            tempNode = tempNode.next;
+        }
     }
 }
