@@ -49,33 +49,28 @@ public class TaskList {
 
     public void markTaskAsCompleted(Task task) {
         Node tempNode = head;
-        boolean taskFound = false;
         for (int i = 0; i < size; i++) {
             if (Objects.equals(tempNode.value, task.getDesc())) {
                 if (Objects.equals(tempNode.value2, "completed")) {
                     System.out.println("Task already marked as completed!");
-                    taskFound = true;
                     break;
                 } else {
                     task.markTaskAsCompleted();
                     tempNode.value2 = "completed";
-                    taskFound = true;
                     break;
                 }
             }
         tempNode = tempNode.next;
         }
-        if (taskFound == false) {
-            System.out.println("Task not in task list!");
-        }
     }
 
     public void printAllTasks() {
-        Node tempNode = head;
         System.out.println("To Do List");
+        Node tempNode = head;
         for (int i = 0; i < size; i++) {
-            System.out.println("Description  = " + tempNode.value + " " + "Completion Status = " + tempNode.value2);
+            System.out.println("Description = " + tempNode.value + ", " + "Completion Status = " + tempNode.value2);
             tempNode = tempNode.next;
         }
+        System.out.println();
     }
 }

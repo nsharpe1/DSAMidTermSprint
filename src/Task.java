@@ -31,7 +31,7 @@ public class Task {
 
     public void markTaskAsCompleted() {
         this.comstatus = "completed";
-        System.out.println("Completion status changed to 'completed'");
+        System.out.println("Completion status changed to completed");
     }
 
     @Override
